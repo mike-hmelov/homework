@@ -1,4 +1,4 @@
-package org.home.mike.application.controller;
+package org.home.mike.application.controller.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

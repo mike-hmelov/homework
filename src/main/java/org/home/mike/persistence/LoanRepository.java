@@ -1,4 +1,10 @@
 package org.home.mike.persistence;
 
-public class LoanRepository {
+import org.home.mike.domain.Loan;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface LoanRepository extends JpaRepository<Loan, Long> {
+    List<Loan> getByApproved(boolean flag);
 }
