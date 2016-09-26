@@ -2,10 +2,9 @@ package org.home.mike.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -16,4 +15,13 @@ public class Loan {
 
     @Column
     private Boolean approved;
+
+    @ManyToOne
+    private Client client;
+
+    @Column
+    private BigDecimal amount;
+
+    @Column
+    private LocalDate term;
 }

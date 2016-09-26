@@ -3,7 +3,7 @@ package org.home.mike.application.controller.user;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class ClientDTO {
     private Long id;
     private String name;
     private String surname;
