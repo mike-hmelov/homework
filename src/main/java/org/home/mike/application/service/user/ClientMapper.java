@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ClientMapper {
-    public ClientDTO map(Client client){
-        return new ClientDTO();
+    public ClientDTO map(Client client) {
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setId(client.getId());
+        return clientDTO;
     }
 }

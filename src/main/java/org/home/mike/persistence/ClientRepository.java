@@ -1,4 +1,7 @@
 package org.home.mike.persistence;
 
-public class ClientRepository {
+import org.home.mike.domain.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

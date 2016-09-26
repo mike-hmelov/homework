@@ -19,9 +19,9 @@ public class LoanController {
     @Autowired
     private LoanService loanService;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<LoanDTO>> getLoans() {
-        return new ResponseEntity<List<LoanDTO>>(loanService.getLoans(), HttpStatus.OK);
+        return new ResponseEntity<>(loanService.getLoans(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/{loanId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
@@ -29,8 +29,8 @@ public class LoanController {
         return "";
     }
 
-    @RequestMapping(path = "/", method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
-    String applyLoan() {
-        return "";
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
+    void applyLoan() {
+        loanService.applyLoan();
     }
 }
