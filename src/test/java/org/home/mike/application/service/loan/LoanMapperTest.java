@@ -17,8 +17,7 @@ import java.time.LocalDate;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.same;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoanMapperTest {
@@ -45,6 +44,7 @@ public class LoanMapperTest {
         loan.setAmount(BigDecimal.TEN);
         loan.setTerm(now);
         loan.setId(10L);
+        loan = spy(loan);
 
         when(clientMapper.map(client)).thenReturn(clientDTO);
 
@@ -57,6 +57,11 @@ public class LoanMapperTest {
         assertThat(result.getClient(), sameInstance(clientDTO));
 
         verify(clientMapper).map(same(client));
+        verify(loan).getClient();
+        verify(loan).getId();
+        verify(loan).getAmount();
+        verify(loan).getTerm();
+        verifyNoMoreInteractions(loan);
     }
 
 }
