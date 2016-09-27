@@ -36,4 +36,9 @@ public class LoanService {
         Loan appliedLoan = loanRepository.save(loan);
         return loanMapper.map(appliedLoan);
     }
+
+    public LoanDTO getLoan(Long loanId) {
+        Loan loan = loanRepository.getOne(loanId);
+        return loanMapper.map(loan);
+    }
 }

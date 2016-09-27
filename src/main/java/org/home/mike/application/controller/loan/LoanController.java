@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -24,15 +25,18 @@ public class LoanController {
     }
 
     @RequestMapping(path = "/{loanId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    String getLoan(@PathVariable("loanId") Long loanId) {
-        return "";
+    LoanDTO getLoan(@PathVariable("loanId") Long loanId) {
+        return loanService.getLoan(loanId);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "text/plain")
-    ResponseEntity<Void> applyLoan(@RequestBody @Validated LoanDTO newLoan) {
+    ResponseEntity<?> applyLoan(@RequestBody @Validated LoanDTO newLoan) {
         LoanDTO loanDTO = loanService.applyLoan(newLoan);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "" + loanDTO.getId());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(loanDTO.getId()).toUri());
+        return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
+
     }
 }
