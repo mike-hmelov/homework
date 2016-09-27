@@ -30,7 +30,7 @@ public class LoanController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
-    void applyLoan() {
+    void applyLoan(LoanDTO newLoan) {
         loanService.applyLoan();
     }
 }

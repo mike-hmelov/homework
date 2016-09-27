@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,11 +17,13 @@ public class Loan {
     private Boolean approved;
 
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @Column
     private BigDecimal amount;
 
     @Column
-    private LocalDate term;
+    @Temporal(TemporalType.DATE)
+    private Date term;
 }

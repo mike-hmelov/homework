@@ -64,6 +64,13 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration combine.self="override">
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -86,7 +93,35 @@
                     <groups>
                         org.home.mike.util.IntegrationTest
                     </groups>
+                    <argLine>-Xmx256m</argLine>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.5.2</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                        <configuration>
+                            <propertyFile>src/test/resources/liquibase/liquibase.properties</propertyFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prod</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                        <configuration>
+                            <propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class LoanService {
 
     public void applyLoan() {
         Loan loan = new Loan();
-        loan.setTerm(LocalDate.now());
+        loan.setTerm(new Date());
         loan.setAmount(new BigDecimal(10000));
         Client client = new Client();
         clientRepository.save(client);

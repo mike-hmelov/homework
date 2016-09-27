@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -37,7 +37,7 @@ public class LoanMapperTest {
 
     @Test
     public void map() throws Exception {
-        LocalDate now = LocalDate.now();
+        Date now = new Date();
 
         Loan loan = new Loan();
         loan.setClient(client);

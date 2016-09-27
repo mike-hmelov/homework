@@ -1,0 +1,21 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "createTable-client",
+        "author": "mike",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "client"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
+
+
+

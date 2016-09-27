@@ -4,12 +4,12 @@ import lombok.Data;
 import org.home.mike.application.controller.user.ClientDTO;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 public class LoanDTO {
     private Long id;
     private ClientDTO client;
     private BigDecimal amount;
-    private LocalDate term;
+    private Date term;
 }
