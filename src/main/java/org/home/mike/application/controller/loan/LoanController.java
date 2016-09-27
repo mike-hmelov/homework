@@ -2,13 +2,12 @@ package org.home.mike.application.controller.loan;
 
 import org.home.mike.application.service.loan.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,13 +23,16 @@ public class LoanController {
         return new ResponseEntity<>(loanService.getLoans(), HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/{loanId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(path = "/{loanId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     String getLoan(@PathVariable("loanId") Long loanId) {
         return "";
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
-    void applyLoan(LoanDTO newLoan) {
-        loanService.applyLoan();
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "text/plain")
+    ResponseEntity<Void> applyLoan(@RequestBody @Validated LoanDTO newLoan) {
+        LoanDTO loanDTO = loanService.applyLoan(newLoan);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "" + loanDTO.getId());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 }

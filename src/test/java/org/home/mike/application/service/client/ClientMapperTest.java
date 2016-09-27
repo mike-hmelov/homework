@@ -1,4 +1,4 @@
-package org.home.mike.application.service.user;
+package org.home.mike.application.service.client;
 
 import org.hamcrest.CoreMatchers;
 import org.home.mike.application.controller.user.ClientDTO;
@@ -19,8 +19,7 @@ public class ClientMapperTest {
 
     @Test
     public void mapNull() throws Exception {
-        ClientDTO result = mapper.map(null);
-        assertThat(result, CoreMatchers.nullValue());
+        assertThat(mapper.map((Client) null), CoreMatchers.nullValue());
     }
 
     @Test

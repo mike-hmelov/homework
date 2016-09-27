@@ -1,7 +1,7 @@
 package org.home.mike.application.service.loan;
 
 import org.home.mike.application.controller.loan.LoanDTO;
-import org.home.mike.application.service.user.ClientMapper;
+import org.home.mike.application.service.client.ClientMapper;
 import org.home.mike.domain.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,5 +21,15 @@ class LoanMapper {
         loanDTO.setClient(clientMapper.map(loan.getClient()));
         loanDTO.setTerm(loan.getTerm());
         return loanDTO;
+    }
+
+    Loan map(LoanDTO loanDTO) {
+        if(loanDTO == null)
+            return null;
+        Loan loan = new Loan();
+        loan.setAmount(loanDTO.getAmount());
+        loan.setApproved(false);
+        loan.setTerm(loanDTO.getTerm());
+        return loan;
     }
 }

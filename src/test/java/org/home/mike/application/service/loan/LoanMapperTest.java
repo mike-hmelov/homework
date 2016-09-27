@@ -2,7 +2,7 @@ package org.home.mike.application.service.loan;
 
 import org.home.mike.application.controller.loan.LoanDTO;
 import org.home.mike.application.controller.user.ClientDTO;
-import org.home.mike.application.service.user.ClientMapper;
+import org.home.mike.application.service.client.ClientMapper;
 import org.home.mike.domain.Client;
 import org.home.mike.domain.Loan;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class LoanMapperTest {
 
     @Test
     public void mapNull() throws Exception {
-        assertThat(mapper.map(null), nullValue());
+        assertThat(mapper.map((Loan) null), nullValue());
     }
 
     @Test
@@ -64,4 +64,30 @@ public class LoanMapperTest {
         verifyNoMoreInteractions(loan);
     }
 
+    @Test
+    public void mapBackNull() throws Exception {
+        assertThat(mapper.map((LoanDTO) null), nullValue());
+    }
+
+    @Test
+    public void mapBack() throws Exception {
+        LoanDTO dto = new LoanDTO();
+        Date term = new Date();
+        dto.setTerm(term);
+        dto.setAmount(BigDecimal.TEN);
+        dto.setClient(clientDTO);
+
+        dto = spy(dto);
+        Loan result = mapper.map(dto);
+
+        assertThat(result.getId(), nullValue());
+        assertThat(result.getTerm(), sameInstance(term));
+        assertThat(result.getAmount(), equalTo(BigDecimal.TEN));
+        assertThat(result.getApproved(), is(false));
+        assertThat(result.getClient(), nullValue());
+
+        verify(dto).getAmount();
+        verify(dto).getTerm();
+        verifyNoMoreInteractions(dto);
+    }
 }
