@@ -13,7 +13,7 @@ public class ClientMapper {
         clientDTO.setId(client.getId());
         clientDTO.setName(client.getName());
         clientDTO.setSurname(client.getSurname());
-        client.setPersonalId(client.getPersonalId());
+        clientDTO.setPersonalId(client.getPersonalId());
         return clientDTO;
     }
 

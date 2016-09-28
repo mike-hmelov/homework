@@ -41,5 +41,14 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1.0.0.2" author="mike">
+        <createTable tableName="client_blacklist">
+            <column name="client_id" type="bigint">
+                <constraints primaryKey="true" foreignKeyName="client_blacklist_client_fk" references="client(id)"/>
+            </column>
+            <column name="comment" type="text"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
 

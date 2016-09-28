@@ -1,19 +1,31 @@
 package org.home.mike.application.controller.user;
 
+import org.home.mike.application.service.client.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(path = "client")
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "/client")
 public class ClientController {
-    @RequestMapping(path = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    String getClients() {
-        return "";
+    @Autowired
+    private ClientService clientService;
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<ClientDTO>> getClients() {
+        return new ResponseEntity<>(clientService.getClients(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/{clientId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    String getClient() {
-        return "";
+    ClientDTO getClient(@PathVariable("clientId") Long clientId) {
+        return clientService.getClient(clientId);
     }
 
     @RequestMapping(params = "/{clientId}/loans", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

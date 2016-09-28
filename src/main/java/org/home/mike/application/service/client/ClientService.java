@@ -6,6 +6,9 @@ import org.home.mike.persistence.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ClientService {
     @Autowired
@@ -19,5 +22,15 @@ public class ClientService {
         if (existingClient != null)
             return existingClient;
         return clientRepository.save(client);
+    }
+
+    public List<ClientDTO> getClients() {
+        List<Client> all = clientRepository.findAll();
+        return all.stream().map(c -> clientMapper.map(c)).collect(Collectors.toList());
+    }
+
+    public ClientDTO getClient(Long clientId) {
+        Client client = clientRepository.getOne(clientId);
+        return clientMapper.map(client);
     }
 }
