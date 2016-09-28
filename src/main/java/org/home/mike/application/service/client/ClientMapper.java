@@ -11,13 +11,19 @@ public class ClientMapper {
             return null;
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setId(client.getId());
+        clientDTO.setName(client.getName());
+        clientDTO.setSurname(client.getSurname());
+        client.setPersonalId(client.getPersonalId());
         return clientDTO;
     }
 
     Client map(ClientDTO clientDTO) {
-        if(clientDTO == null)
+        if (clientDTO == null)
             return null;
         Client client = new Client();
+        client.setName(clientDTO.getName());
+        client.setSurname(clientDTO.getSurname());
+        client.setPersonalId(clientDTO.getPersonalId());
         return client;
     }
 }

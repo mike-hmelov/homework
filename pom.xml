@@ -113,7 +113,7 @@
                     </execution>
                     <execution>
                         <id>prod</id>
-                        <phase>install</phase>
+                        <phase>liquibase</phase>
                         <goals>
                             <goal>update</goal>
                         </goals>

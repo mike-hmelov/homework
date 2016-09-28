@@ -3,15 +3,25 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="clientTable-create" author="mike">
+    <changeSet id="1.0.0.0" author="mike">
         <createTable tableName="client">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="name" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personal_id" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
+        <addUniqueConstraint tableName="client" columnNames="name,surname,personal_id" constraintName="client_ukc"/>
     </changeSet>
 
-    <changeSet id="loanTable-create" author="mike">
+    <changeSet id="1.0.0.1" author="mike">
         <createTable tableName="loan">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>

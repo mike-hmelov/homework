@@ -15,7 +15,9 @@ public class ClientService {
 
     public Client saveOrUpdate(ClientDTO clientDTO) {
         Client client = clientMapper.map(clientDTO);
-        //TODO find such client in db
+        Client existingClient = clientRepository.findByPersonalId(client.getPersonalId());
+        if (existingClient != null)
+            return existingClient;
         return clientRepository.save(client);
     }
 }
