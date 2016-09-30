@@ -1,7 +1,7 @@
 package org.home.mike.application.service.loan;
 
 import org.home.mike.application.controller.loan.LoanDTO;
-import org.home.mike.application.controller.user.ClientDTO;
+import org.home.mike.application.controller.client.ClientDTO;
 import org.home.mike.application.service.client.ClientMapper;
 import org.home.mike.domain.Client;
 import org.home.mike.domain.Loan;

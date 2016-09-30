@@ -1,7 +1,7 @@
 package org.home.mike.application.service.client;
 
 import org.hamcrest.CoreMatchers;
-import org.home.mike.application.controller.user.ClientDTO;
+import org.home.mike.application.controller.client.ClientDTO;
 import org.home.mike.domain.Client;
 import org.junit.Before;
 import org.junit.Test;

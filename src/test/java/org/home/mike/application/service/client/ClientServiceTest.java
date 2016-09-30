@@ -2,7 +2,7 @@ package org.home.mike.application.service.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.home.mike.application.controller.loan.LoanDTO;
-import org.home.mike.application.controller.user.ClientDTO;
+import org.home.mike.application.controller.client.ClientDTO;
 import org.junit.Test;
 
 import java.io.StringWriter;

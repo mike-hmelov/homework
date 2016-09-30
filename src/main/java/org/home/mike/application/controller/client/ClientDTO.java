@@ -1,4 +1,4 @@
-package org.home.mike.application.controller.user;
+package org.home.mike.application.controller.client;
 
 import lombok.Data;
 

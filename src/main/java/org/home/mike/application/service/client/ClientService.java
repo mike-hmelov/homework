@@ -1,9 +1,10 @@
 package org.home.mike.application.service.client;
 
+import org.home.mike.application.controller.client.ClientDTO;
 import org.home.mike.application.controller.loan.LoanDTO;
-import org.home.mike.application.controller.user.ClientDTO;
 import org.home.mike.application.service.loan.LoanMapper;
 import org.home.mike.domain.Client;
+import org.home.mike.domain.Loan;
 import org.home.mike.persistence.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,6 +41,10 @@ public class ClientService {
 
     public List<LoanDTO> getClientLoans(Long clientId) {
         Client client = clientRepository.getOne(clientId);
-        return client.getLoans().stream().map(l -> loanMapper.map(l)).collect(Collectors.toList());
+        return client.getLoans()
+                .stream()
+                .filter(Loan::getApproved)
+                .map(l -> loanMapper.map(l))
+                .collect(Collectors.toList());
     }
 }
