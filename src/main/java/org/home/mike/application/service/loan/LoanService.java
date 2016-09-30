@@ -41,4 +41,10 @@ public class LoanService {
         Loan loan = loanRepository.getOne(loanId);
         return loanMapper.map(loan);
     }
+
+    public void approveLoan(Long loanId, boolean approve) {
+        Loan loan = loanRepository.getOne(loanId);
+        loan.setApproved(approve);
+        loanRepository.save(loan);
+    }
 }

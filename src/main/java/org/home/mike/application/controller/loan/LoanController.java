@@ -29,7 +29,7 @@ public class LoanController {
         return loanService.getLoan(loanId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "text/plain")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> applyLoan(@RequestBody @Validated LoanDTO newLoan) {
         LoanDTO loanDTO = loanService.applyLoan(newLoan);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -38,5 +38,11 @@ public class LoanController {
                 .buildAndExpand(loanDTO.getId()).toUri());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 
+    }
+
+    @RequestMapping(path = "/{loanId}/approve", method = RequestMethod.POST)
+    ResponseEntity<?> approveLoan(@PathVariable("loanId") Long loanId, @RequestParam(name = "flag") boolean approve) {
+        loanService.approveLoan(loanId, approve);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
