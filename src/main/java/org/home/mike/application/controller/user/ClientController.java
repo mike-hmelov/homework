@@ -29,7 +29,7 @@ public class ClientController {
         return clientService.getClient(clientId);
     }
 
-    @RequestMapping(params = "/{clientId}/loans", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/{clientId}/loans", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<LoanDTO>> getClientsLoans(@PathVariable("clientId") Long clientId) {
         return new ResponseEntity<>(clientService.getClientLoans(clientId), HttpStatus.OK);
     }

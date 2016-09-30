@@ -19,7 +19,7 @@ public class Client {
     @Column(name = "personal_id")
     private String personalId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private List<Loan> loans;
 
