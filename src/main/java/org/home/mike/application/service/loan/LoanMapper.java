@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-class LoanMapper {
+public class LoanMapper {
     @Autowired
     private ClientMapper clientMapper;
 
-    LoanDTO map(Loan loan) {
+    public LoanDTO map(Loan loan) {
         if(loan == null)
             return null;
         //TODO make it automatically??

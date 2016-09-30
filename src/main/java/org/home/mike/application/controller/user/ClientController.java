@@ -1,5 +1,6 @@
 package org.home.mike.application.controller.user;
 
+import org.home.mike.application.controller.loan.LoanDTO;
 import org.home.mike.application.service.client.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class ClientController {
     }
 
     @RequestMapping(params = "/{clientId}/loans", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    String getClientsLoans() {
-        return "";
+    ResponseEntity<List<LoanDTO>> getClientsLoans(@PathVariable("clientId") Long clientId) {
+        return new ResponseEntity<>(clientService.getClientLoans(clientId), HttpStatus.OK);
     }
 }

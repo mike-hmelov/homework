@@ -3,6 +3,7 @@ package org.home.mike.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,4 +18,12 @@ public class Client {
 
     @Column(name = "personal_id")
     private String personalId;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private List<Loan> loans;
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
 }
