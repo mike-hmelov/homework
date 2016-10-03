@@ -8,13 +8,13 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar2(200)">
+            <column name="name" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="surname" type="varchar2(200)">
+            <column name="surname" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="personal_id" type="varchar2(200)">
+            <column name="personal_id" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -47,6 +47,14 @@
                 <constraints primaryKey="true" foreignKeyName="client_blacklist_client_fk" references="client(id)"/>
             </column>
             <column name="comment" type="varchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.0.3" author="mike">
+        <createTable tableName="personalid_blacklist">
+            <column name="personalid" type="varchar(200)">
+                <constraints primaryKey="true"/>
+            </column>
         </createTable>
     </changeSet>
 

@@ -49,7 +49,11 @@ public class ClientService {
     }
 
     public void validateForLoan(Client client) {
-        if(client.isBlacklisted())
+        if (client.isBlacklisted())
             throw new InvalidClientForLoanException("Client is blacklisted: " + client.getBlacklistReason());
+
+        if (clientRepository.isPersonalIdBlacklisted(client.getPersonalId()))
+            throw new InvalidClientForLoanException(String.format("Personal id `%s` is blacklisted", client.getPersonalId()));
+
     }
 }
