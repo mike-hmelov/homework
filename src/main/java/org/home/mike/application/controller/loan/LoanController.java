@@ -1,15 +1,17 @@
 package org.home.mike.application.controller.loan;
 
+import org.home.mike.application.service.client.InvalidClientForLoanException;
 import org.home.mike.application.service.loan.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,19 +32,28 @@ public class LoanController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> applyLoan(@RequestBody @Validated LoanDTO newLoan) {
+    ResponseEntity<?> applyLoan(@RequestBody @Valid LoanDTO newLoan) {
         LoanDTO loanDTO = loanService.applyLoan(newLoan);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(loanDTO.getId()).toUri());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
-
     }
 
     @RequestMapping(path = "/{loanId}/approve", method = RequestMethod.POST)
     ResponseEntity<?> approveLoan(@PathVariable("loanId") Long loanId, @RequestParam(name = "flag") boolean approve) {
         loanService.approveLoan(loanId, approve);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<?> handleNotFound(EntityNotFoundException ex) {
+        return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidClientForLoanException.class)
+    public ResponseEntity<?> handleInvalidClient(InvalidClientForLoanException ex) {
+        return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.FORBIDDEN);
     }
 }

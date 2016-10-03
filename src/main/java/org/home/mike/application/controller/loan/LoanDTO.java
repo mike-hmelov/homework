@@ -3,6 +3,7 @@ package org.home.mike.application.controller.loan;
 import lombok.Data;
 import org.home.mike.application.controller.client.ClientDTO;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
 public class LoanDTO {
     private Long id;
     @NotNull
+    @Valid
     private ClientDTO client;
     @NotNull
     private BigDecimal amount;
