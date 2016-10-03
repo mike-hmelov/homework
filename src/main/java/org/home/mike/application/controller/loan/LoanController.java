@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/loan")
+@RequestMapping(path = "/loans")
 public class LoanController {
 
     @Autowired
