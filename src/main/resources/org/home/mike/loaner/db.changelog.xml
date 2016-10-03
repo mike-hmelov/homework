@@ -46,7 +46,7 @@
             <column name="client_id" type="bigint">
                 <constraints primaryKey="true" foreignKeyName="client_blacklist_client_fk" references="client(id)"/>
             </column>
-            <column name="comment" type="text"/>
+            <column name="comment" type="varchar(1000)"/>
         </createTable>
     </changeSet>
 

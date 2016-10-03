@@ -47,4 +47,9 @@ public class ClientService {
                 .map(l -> loanMapper.map(l))
                 .collect(Collectors.toList());
     }
+
+    public void validateForLoan(Client client) {
+        if(client.isBlacklisted())
+            throw new InvalidClientForLoanException("Client is blacklisted: " + client.getBlacklistReason());
+    }
 }

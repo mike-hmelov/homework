@@ -32,6 +32,7 @@ public class LoanService {
     public LoanDTO applyLoan(LoanDTO newLoan) {
         Loan loan = loanMapper.map(newLoan);
         Client client = clientService.saveOrUpdate(newLoan.getClient());
+        clientService.validateForLoan(client);
         loan.setClient(client);
         Loan appliedLoan = loanRepository.save(loan);
         return loanMapper.map(appliedLoan);
