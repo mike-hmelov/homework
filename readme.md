@@ -9,9 +9,10 @@ Loan processing RESTFull web service. Implemented based on [requirements](https:
 ```bash 
 ./mvnw package
 ```
-3. Create
-
-Provide code examples and explanations of how to get the project.
+3. Create H2 database by running command
+```bash
+./update.db.sh
+```
 
 ## API Reference
 
