@@ -32,6 +32,9 @@ public class ClientMapperTest {
         assertThat(result.getId(), CoreMatchers.equalTo(10L));
 
         verify(client).getId();
+        verify(client).getName();
+        verify(client).getSurname();
+        verify(client).getPersonalId();
         verifyNoMoreInteractions(client);
     }
 }

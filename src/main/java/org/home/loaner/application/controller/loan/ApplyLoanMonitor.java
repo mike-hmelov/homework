@@ -22,7 +22,7 @@ public class ApplyLoanMonitor {
     private RequestStatisticsStorage requestStatisticsStorage;
 
     @Before("execution(* *..LoanController.applyLoan(..))")
-    public void beforeApplyLoan() throws Throwable {
+    public void beforeApplyLoan() {
         String remoteAddr = request.getRemoteAddr();
         String country = countryResolver.resolve(remoteAddr);
         if (tooManyRequestsFromLocation(country))
@@ -32,7 +32,7 @@ public class ApplyLoanMonitor {
 
     private boolean tooManyRequestsFromLocation(String country) {
         int count = requestStatisticsStorage.getCount(country);
-        return count > LIMIT_PER_COUNTRY;
+        return count >= LIMIT_PER_COUNTRY;
     }
 
     @Scheduled(fixedRate = 1000, initialDelay = 2000)

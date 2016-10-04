@@ -36,8 +36,10 @@ public class LoanController {
         LoanDTO loanDTO = loanService.applyLoan(newLoan);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(loanDTO.getId()).toUri());
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(loanDTO.getId())
+                .toUri());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 
