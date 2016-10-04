@@ -30,7 +30,7 @@ public class RequestStatisticsStorage {
             requestCountPerCountry.put(country, count);
         }
         count.incrementAndGet();
-        logger.info("" + requestCountPerCountry);
+        logger.trace("" + requestCountPerCountry);
     }
 
     void decrementForAll() {
@@ -42,6 +42,6 @@ public class RequestStatisticsStorage {
             if (i <= 0)
                 iterator.remove();
         });
-        logger.info("" + requestCountPerCountry);
+        logger.trace("" + requestCountPerCountry);
     }
 }
