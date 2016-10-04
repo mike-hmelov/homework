@@ -70,7 +70,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1186)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1175)
-	at org.home.mike.LoanerApplication.main(LoanerApplication.java:11)
+	at org.home.loaner.LoanerApplication.main(LoanerApplication.java:11)
 Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/misha/work/projects/fin/loaner/src/main/resources/loan.mv.db [1.4.192/7]" [50000-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 68 more
