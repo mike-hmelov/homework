@@ -56,4 +56,9 @@ public class LoanController {
     public ResponseEntity<?> handleInvalidClient(InvalidClientForLoanException ex) {
         return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(TooManyRequestsException.class)
+    public ResponseEntity<?> handleTooManyRequests(TooManyRequestsException ex) {
+        return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.TOO_MANY_REQUESTS);
+    }
 }
