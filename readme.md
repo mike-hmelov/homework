@@ -13,6 +13,10 @@ Loan processing RESTFull web service. Implemented based on [requirements](https:
 ```bash
 ./update.db.sh
 ```
+4. Run the service by invoking command
+```bash
+./run.sh
+```
 
 ## API Reference
 
@@ -20,12 +24,11 @@ Depending on the size of the project, if it is small and simple enough the refer
 
 ## Tests
 
-Describe and show how to run the tests with code examples.
-
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-## License
-
-A short snippet describing the license (MIT, Apache, etc.)
+Run all unit tests
+```bash
+./mvnw test 
+```
+Run all unit and integration tests
+```bash
+./mvnw integration-tests
+```
