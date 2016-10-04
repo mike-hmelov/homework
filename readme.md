@@ -13,6 +13,10 @@ Loan processing RESTFull web service. Implemented based on [requirements](https:
 ```bash
 ./update.db.sh
 ```
+Database:
+    user: sa
+    password: 
+
 4. Run the service by invoking command
 ```bash
 ./run.sh
