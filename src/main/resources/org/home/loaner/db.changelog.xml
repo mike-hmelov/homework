@@ -1,0 +1,62 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1.0.0.0" author="mike">
+        <createTable tableName="client">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personal_id" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="client" columnNames="name,surname,personal_id" constraintName="client_ukc"/>
+    </changeSet>
+
+    <changeSet id="1.0.0.1" author="mike">
+        <createTable tableName="loan">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="approved" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="loan_client_fk" references="client(id)"/>
+            </column>
+            <column name="amount" type="number">
+                <constraints nullable="false"/>
+            </column>
+            <column name="term" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.0.2" author="mike">
+        <createTable tableName="client_blacklist">
+            <column name="client_id" type="bigint">
+                <constraints primaryKey="true" foreignKeyName="client_blacklist_client_fk" references="client(id)"/>
+            </column>
+            <column name="comment" type="varchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.0.3" author="mike">
+        <createTable tableName="personalid_blacklist">
+            <column name="personalid" type="varchar(200)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+
