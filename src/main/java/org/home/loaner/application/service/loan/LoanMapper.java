@@ -20,6 +20,7 @@ public class LoanMapper {
         loanDTO.setAmount(loan.getAmount());
         loanDTO.setClient(clientMapper.map(loan.getClient()));
         loanDTO.setTerm(loan.getTerm());
+        loanDTO.setApproved(loan.getApproved());
         return loanDTO;
     }
 

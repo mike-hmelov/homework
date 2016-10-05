@@ -1,7 +1,7 @@
 package org.home.loaner.application.service.loan;
 
-import org.home.loaner.application.controller.loan.LoanDTO;
 import org.home.loaner.application.controller.client.ClientDTO;
+import org.home.loaner.application.controller.loan.LoanDTO;
 import org.home.loaner.application.service.client.ClientMapper;
 import org.home.loaner.domain.Client;
 import org.home.loaner.domain.Loan;
@@ -44,6 +44,7 @@ public class LoanMapperTest {
         loan.setAmount(BigDecimal.TEN);
         loan.setTerm(now);
         loan.setId(10L);
+        loan.setApproved(true);
         loan = spy(loan);
 
         when(clientMapper.map(client)).thenReturn(clientDTO);
@@ -55,10 +56,12 @@ public class LoanMapperTest {
         assertThat(result.getId(), equalTo(10L));
         assertThat(result.getTerm(), equalTo(now));
         assertThat(result.getClient(), sameInstance(clientDTO));
+        assertThat(result.isApproved(), is(true));
 
         verify(clientMapper).map(same(client));
         verify(loan).getClient();
         verify(loan).getId();
+        verify(loan).getApproved();
         verify(loan).getAmount();
         verify(loan).getTerm();
         verifyNoMoreInteractions(loan);
